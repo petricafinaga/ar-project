@@ -1,5 +1,3 @@
-let xmlDoc = undefined;
-
 const setInitialPosition = (position) => {
   const { latitude, longitude } = position.coords;
 
@@ -8,7 +6,7 @@ const setInitialPosition = (position) => {
   // Set camera position to our position
   camera.setAttribute(
     "gps-new-camera",
-    `simulateLatitude: ${latitude}; simulateLongitude: ${longitude}; simulateAltitude: 50`
+    `simulateLatitude: ${latitude}; simulateLongitude: ${longitude}; simulateAltitude: 10`
   );
 };
 

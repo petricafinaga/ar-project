@@ -18,7 +18,7 @@
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
       renderer="antialias: true; alpha: true"
     >
-      <a-camera gps-new-camera="gpsMinDistance: 5" lock-controls="false"></a-camera>
+      <a-camera gps-new-camera="gpsMinDistance: 2" lock-controls="false"></a-camera>
 
       <!-- <a-entity
         id="roads-container"
@@ -42,11 +42,11 @@
       </a-entity> -->
 
       <a-assets>
-        <a-asset-item id="open-street-map" src="assets/maps/map.osm"></a-asset-item>
-        <a-asset-item id="buildingModel" src="assets/models/building/building.gltf"></a-asset-item>
+        <a-asset-item id="open-street-map" src="./src/assets/maps/map.osm"></a-asset-item>
+        <a-asset-item id="buildingModel" src="./src/assets/models/building/building.gltf"></a-asset-item>
         <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
         <!-- <a-asset-item id="houseModel" src="assets/models/house/scene.gltf"></a-asset-item> -->
-        <img id="building_texture" src="assets/textures/building_texture.jpg">
+        <img id="building_texture" src="./src/assets/textures/building_texture.jpg">
       </a-assets>
       <!-- <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 47.638; longitude: 26.224" scale="10 10 10"></a-entity> -->
       <!-- <a-entity
@@ -54,15 +54,7 @@
           gps-new-entity-place="latitude: 47.6399073; longitude: 26.2593042"
           material="color: #00ff00"
         ></a-entity>
-        <a-curve
-          path="
-          47.6399071 26.2593042 0,
-          47.6344089 26.2599995 0"
-          material="shader: line; color: #ff0000"
-          curve-type="cubic"
-          gps-new-entity-place="latitude: 47.6399071; longitude: 26.2593042"
-          scale="10 10 10"
-        ></a-curve> -->
+       -->
 <!-- 
         <a-box gps-new-entity-place="latitude: 47.643904; longitude: 26.2623057" color="green" scale="40 40 40" src="#building_texture"></a-box>
         <a-entity
@@ -77,8 +69,9 @@
       </a-entity>
     </a-scene>
   </body>
-  <script src="./location-helper.js"></script>
-  <script src="./drawing-helper.js"></script>
-  <script src="./file-helper.js"></script>
-  <script src="./index.js"></script>
+  <script src="./src/points-of-interest.js"></script>
+  <script src="./src/location-helper.js"></script>
+  <script src="./src/drawing-helper.js"></script>
+  <script src="./src/file-helper.js"></script>
+  <script src="./src/index.js"></script>
 </html>

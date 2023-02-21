@@ -1,6 +1,6 @@
 let testEntityAdded = false;
 
-const nodeToLatLong = (node) => {
+const nodeToLatLong = (node, xmlDoc) => {
   const id = node.getAttribute("ref");
   const nodeXml = xmlDoc.getElementById(id);
 
@@ -10,46 +10,111 @@ const nodeToLatLong = (node) => {
   return { lat, long };
 };
 
-const drawBoxAtCurrentPosition = (position) => {
+const createPointOfInterest = (interestPoint) => {
+  const { latitude, longitude } = interestPoint.position;
+
+  const entity = document.createElement("a-gltf-model");
+  entity.setAttribute("src", "#buildingModel");
+  entity.setAttribute("scale", {
+    x: 0.2,
+    y: 0.2,
+    z: 0.2,
+  });
+
+  entity.setAttribute("gps-new-entity-place", {
+    latitude,
+    longitude,
+  });
+
+  const text = document.createElement("a-entity");
+  text.setAttribute("position", "0 200 0");
+  // text.setAttribute("color", "red");
+  text.setAttribute("text", { value: interestPoint.name });
+  text.setAttribute("scale", {
+    x: 200,
+    y: 200,
+    z: 200,
+  });
+
+  text.setAttribute("material", { color: "red" });
+  text.setAttribute("gps-new-entity-place", {
+    latitude,
+    longitude,
+  });
+
+  return [entity, text];
+};
+
+const drawBoxAtCurrentPosition = () => {
   if (!testEntityAdded) {
-    const { latitude, longitude } = position;
+    pointsOfInterest.forEach((interestPoint) => {
+      const createdPoints = createPointOfInterest(interestPoint);
 
-    // Add a box to the north of the initial GPS position
-    const entity = document.createElement("a-gltf-model");
-    entity.setAttribute("src", "#buildingModel");
-    entity.setAttribute("scale", {
-      x: 0.5,
-      y: 0.5,
-      z: 0.5,
+      createdPoints.forEach((point) => {
+        document.querySelector("a-scene").appendChild(point);
+      });
     });
 
-    entity.setAttribute("material", { color: "red" });
-    entity.setAttribute("gps-new-entity-place", {
-      latitude: latitude + 0.002,
-      longitude: longitude,
-    });
+    // const { latitude, longitude } = position;
 
-    console.log("first  entity", latitude + 0.002, longitude - 0.002);
-    document.querySelector("a-scene").appendChild(entity);
+    // // Add a box to the north of the initial GPS position
+    // const entity = document.createElement("a-gltf-model");
+    // entity.setAttribute("src", "#buildingModel");
+    // entity.setAttribute("scale", {
+    //   x: 0.5,
+    //   y: 0.5,
+    //   z: 0.5,
+    // });
 
-    const entity1 = document.createElement("a-gltf-model");
-    entity1.setAttribute("src", "#buildingModel");
-    entity1.setAttribute("scale", {
-      x: 0.5,
-      y: 0.5,
-      z: 0.5,
-    });
+    // entity.setAttribute("material", { color: "red" });
+    // entity.setAttribute("gps-new-entity-place", {
+    //   latitude: latitude + 0.002,
+    //   longitude: longitude,
+    // });
 
-    entity1.setAttribute("material", { color: "green" });
-    entity1.setAttribute("gps-new-entity-place", {
-      latitude: latitude + 0.002,
-      longitude: longitude + 0.003,
-    });
+    // console.log("first  entity", latitude + 0.002, longitude - 0.002);
+    // document.querySelector("a-scene").appendChild(entity);
 
-    console.log("second entity", latitude + 0.004, longitude + 0.003);
+    // const entity1 = document.createElement("a-gltf-model");
+    // entity1.setAttribute("src", "#buildingModel");
+    // entity1.setAttribute("scale", {
+    //   x: 0.5,
+    //   y: 0.5,
+    //   z: 0.5,
+    // });
 
-    entity1.setAttribute("position", "0 0 0");
-    document.querySelector("a-scene").appendChild(entity1);
+    // entity1.setAttribute("material", { color: "green" });
+    // entity1.setAttribute("gps-new-entity-place", {
+    //   latitude: latitude + 0.002,
+    //   longitude: longitude + 0.003,
+    // });
+
+    // console.log("second entity", latitude + 0.004, longitude + 0.003);
+
+    // entity1.setAttribute("position", "0 0 0");
+    // document.querySelector("a-scene").appendChild(entity1);
+
+    // // <a-entity text="value: Hello World;"></a-entity>
+
+    // // Add a box to the north of the initial GPS position
+    // const text = document.createElement("a-entity");
+    // text.setAttribute("position", "0 140 0");
+    // text.setAttribute("color", "red");
+    // text.setAttribute("text", "value: Hello World;");
+    // text.setAttribute("scale", {
+    //   x: 150,
+    //   y: 150,
+    //   z: 150,
+    // });
+
+    // //  entity.setAttribute("material", { color: "red" });
+    // text.setAttribute("gps-new-entity-place", {
+    //   latitude: latitude + 0.002,
+    //   longitude: longitude,
+    // });
+
+    // //  console.log("first  entity", text + 0.002, longitude - 0.002);
+    // document.querySelector("a-scene").appendChild(text);
 
     // const line = createLine(
     //   { lat: 47.0, long: 24.0 },
