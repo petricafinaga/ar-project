@@ -6,13 +6,15 @@ window.onload = async () => {
     },
   };
 
+  window.camera = document.querySelector("[gps-new-camera]");
+
   navigator.geolocation.getCurrentPosition(setInitialPosition);
   // setInitialPosition(testPosition);
 
-  camera.addEventListener("gps-camera-update-position", (e) => {
-    console.log("GPS position update from camera:", e.detail.position);
-    drawBoxAtCurrentPosition(e.detail.position);
-  });
+  camera.addEventListener(
+    "gps-camera-update-position",
+    handleCameraPositionChange
+  );
 
   // Load the OpenStreetMap XML data
   const mapFile = document.getElementById("open-street-map");

@@ -10,4 +10,11 @@ const setInitialPosition = (position) => {
   );
 };
 
-const camera = document.querySelector("[gps-new-camera]");
+const handleCameraPositionChange = (event) => {
+  console.log("GPS position update from camera:", event.detail.position);
+
+  drawBoxAtCurrentPosition(event.detail.position);
+
+  const {latitude, longitude} = event.detail.position;
+  document.getElementById('current-position').innerText = `lat: ${latitude}; long: ${longitude}`;
+}

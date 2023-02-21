@@ -11,14 +11,24 @@
       type="text/javascript"
       src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"
     ></script>
+
+    <link rel="stylesheet" href="./src/style.css">
+
+    <script src="./src/points-of-interest.js"></script>
+    <script src="./src/location-helper.js"></script>
+    <script src="./src/drawing-helper.js"></script>
+    <script src="./src/file-helper.js"></script>
+    <script src="./src/index.js"></script>
   </head>
   <body>
+    <div id="current-position">lat, long</div>
     <a-scene
       vr-mode-ui="enabled: false"
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
       renderer="antialias: true; alpha: true"
     >
-      <a-camera gps-new-camera="gpsMinDistance: 2" lock-controls="false"></a-camera>
+    <!--  look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' -->
+      <a-camera gps-new-camera="gpsMinDistance: 2" rotation-reader></a-camera>
 
       <!-- <a-entity
         id="roads-container"
@@ -69,9 +79,4 @@
       </a-entity>
     </a-scene>
   </body>
-  <script src="./src/points-of-interest.js"></script>
-  <script src="./src/location-helper.js"></script>
-  <script src="./src/drawing-helper.js"></script>
-  <script src="./src/file-helper.js"></script>
-  <script src="./src/index.js"></script>
 </html>

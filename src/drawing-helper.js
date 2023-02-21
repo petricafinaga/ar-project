@@ -15,6 +15,7 @@ const createPointOfInterest = (interestPoint) => {
 
   const entity = document.createElement("a-gltf-model");
   entity.setAttribute("src", "#buildingModel");
+  entity.setAttribute("look-at", "[gps-new-camera]")
   entity.setAttribute("scale", {
     x: 0.2,
     y: 0.2,
@@ -27,8 +28,9 @@ const createPointOfInterest = (interestPoint) => {
   });
 
   const text = document.createElement("a-entity");
-  text.setAttribute("position", "0 200 0");
-  // text.setAttribute("color", "red");
+  text.setAttribute("position", "0 90 0");
+  text.setAttribute("look-at", "[gps-new-camera]")
+  text.setAttribute("color", "red");
   text.setAttribute("text", { value: interestPoint.name });
   text.setAttribute("scale", {
     x: 200,
