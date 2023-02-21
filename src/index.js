@@ -1,8 +1,8 @@
 window.onload = async () => {
   const testPosition = {
     coords: {
-      latitude: 47.6376913,
-      longitude: 26.2417762,
+      latitude: 47.6395075,
+      longitude: 26.2438617,
     },
   };
 
@@ -11,18 +11,23 @@ window.onload = async () => {
   navigator.geolocation.getCurrentPosition(setInitialPosition);
   // setInitialPosition(testPosition);
 
+  let alreadyAdded = false;
+  const handleCameraPositionChange = (event) => {
+    updateGPSPosition(event);
+
+    if (!alreadyAdded) {
+      drawElements();
+      renderOpenStreetMapData();
+      alreadyAdded = true;
+    }
+  };
+
+   // Load the OpenStreetMap XML data
+   const mapFile = document.getElementById("open-street-map");
+   mapFile.addEventListener("loaded", onFileLoaded);
+
   camera.addEventListener(
     "gps-camera-update-position",
     handleCameraPositionChange
   );
-
-  // Load the OpenStreetMap XML data
-  const mapFile = document.getElementById("open-street-map");
-  mapFile.addEventListener("loaded", onFileLoaded);
-
-  // const scenes = document.getElementsByTagName("a-scene");
-  // console.log(scenes);
-  // scenes[0].addEventListener("click", (e) => {
-  //   console.log("click event dispatched", e);
-  // });
 };

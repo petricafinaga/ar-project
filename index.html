@@ -12,7 +12,7 @@
       src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"
     ></script>
 
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/style.css" />
 
     <script src="./src/points-of-interest.js"></script>
     <script src="./src/location-helper.js"></script>
@@ -27,8 +27,11 @@
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
       renderer="antialias: true; alpha: true"
     >
-    <!--  look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' -->
-      <a-camera gps-new-camera="gpsMinDistance: 2" rotation-reader></a-camera>
+      <!--  look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' -->
+      <a-camera
+        gps-new-camera="gpsMinDistance: 24444444444444444"
+        rotation-reader
+      ></a-camera>
 
       <!-- <a-entity
         id="roads-container"
@@ -52,31 +55,23 @@
       </a-entity> -->
 
       <a-assets>
-        <a-asset-item id="open-street-map" src="./src/assets/maps/map.osm"></a-asset-item>
-        <a-asset-item id="buildingModel" src="./src/assets/models/building/building.gltf"></a-asset-item>
-        <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
-        <!-- <a-asset-item id="houseModel" src="assets/models/house/scene.gltf"></a-asset-item> -->
-        <img id="building_texture" src="./src/assets/textures/building_texture.jpg">
+        <a-asset-item
+          id="open-street-map"
+          src="./src/assets/maps/map.osm"
+        ></a-asset-item>
+        <a-asset-item
+          id="buildingModel"
+          src="./src/assets/models/building/building.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="houseModel"
+          src="./src/assets/models/house/scene.gltf"
+        ></a-asset-item>
+        <img
+          id="building_texture"
+          src="./src/assets/textures/building_texture.jpg"
+        />
       </a-assets>
-      <!-- <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 47.638; longitude: 26.224" scale="10 10 10"></a-entity> -->
-      <!-- <a-entity
-          line="start: 47.6399071 26.2593042 0; end: 47.6344089 26.2599995 0; color: red"
-          gps-new-entity-place="latitude: 47.6399073; longitude: 26.2593042"
-          material="color: #00ff00"
-        ></a-entity>
-       -->
-<!-- 
-        <a-box gps-new-entity-place="latitude: 47.643904; longitude: 26.2623057" color="green" scale="40 40 40" src="#building_texture"></a-box>
-        <a-entity
-          line="start: 47.6419008 26.2593035 0; end: 47.643904 26.2623057 0;"
-          gps-new-entity-place="latitude: 47.643904; longitude: 26.2623057"
-          color="red"
-          visible="true"
-          scale="40 40 40"
-        ></a-entity> -->
-        <!-- <a-plane gps-new-entity-place="latitude: 47.643904; longitude: 26.2623057" color="#00ff00" height="30" width="2250"></a-plane> -->
-        <!-- <a-gltf-model gps-new-entity-place="latitude: 47.643904; longitude: 26.2623057" src="#buildingModel"></a-gltf-model> -->
-      </a-entity>
     </a-scene>
   </body>
 </html>
