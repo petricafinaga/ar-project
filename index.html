@@ -22,14 +22,14 @@
   </head>
   <body>
     <div id="current-position">lat, long</div>
+    <button id="toggle-drawings" type="button">Toggle drawings</button>
     <a-scene
       vr-mode-ui="enabled: false"
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
       renderer="antialias: true; alpha: true"
     >
-      <!--  look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' -->
       <a-camera
-        gps-new-camera="gpsMinDistance: 24444444444444444"
+        gps-new-camera="gpsMinDistance: 1"
         rotation-reader
       ></a-camera>
 
@@ -67,10 +67,6 @@
           id="houseModel"
           src="./src/assets/models/house/scene.gltf"
         ></a-asset-item>
-        <img
-          id="building_texture"
-          src="./src/assets/textures/building_texture.jpg"
-        />
       </a-assets>
     </a-scene>
   </body>

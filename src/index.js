@@ -22,6 +22,8 @@ window.onload = async () => {
     }
   };
 
+  document.getElementById("toggle-drawings").addEventListener('click', toggleDrawings)
+
    // Load the OpenStreetMap XML data
    const mapFile = document.getElementById("open-street-map");
    mapFile.addEventListener("loaded", onFileLoaded);

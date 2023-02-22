@@ -17,6 +17,7 @@ const createPointOfInterest = (interestPoint) => {
 
   const entity = document.createElement("a-gltf-model");
   entity.setAttribute("src", model);
+  entity.setAttribute("toggle", true);
   entity.setAttribute("look-at", "[gps-new-camera]");
   entity.setAttribute("position", "0 0 0");
   entity.setAttribute("scale", {
@@ -32,6 +33,7 @@ const createPointOfInterest = (interestPoint) => {
 
   const text = document.createElement("a-entity");
   text.setAttribute("position", "0 40 0");
+  text.setAttribute("toggle", true);
   text.setAttribute("look-at", "[gps-new-camera]");
   text.setAttribute("text", {
     value: interestPoint.name,
@@ -50,6 +52,7 @@ const createPointOfInterest = (interestPoint) => {
 
   const info = document.createElement("a-entity");
   info.setAttribute("position", "0 34 0");
+  info.setAttribute("toggle", true);
   info.setAttribute("look-at", "[gps-new-camera]");
   info.setAttribute("text", {
     value: interestPoint.info,
@@ -76,12 +79,26 @@ const createLine = (node1, node2, name) => {
   const p2 = cam.latLonToWorld(node2.lat, node2.long);
 
   const lineEntity = document.createElement("a-entity");
+  lineEntity.setAttribute("toggle", true);
   lineEntity.setAttribute(
     "line",
-    `start: ${p1[0]} 0 ${p1[1]}; end: ${p2[0]} 0 ${p2[1]}; color: blue;`
+    `start: ${p1[0]} 0 ${p1[1]}; end: ${p2[0]} 0 ${p2[1]}; color: red;`
   );
 
   return lineEntity;
+};
+
+let wasDraw = true;
+const toggleDrawings = () => {
+  if (wasDraw) {
+    Array.from(document.querySelectorAll("[toggle=true]")).forEach((element) => {
+      element.remove();
+    });
+    wasDraw = false;
+  } else {
+    drawElements();
+    wasDraw = true;
+  }
 };
 
 const drawElements = () => {
